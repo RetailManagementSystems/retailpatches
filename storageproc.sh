@@ -1,3 +1,4 @@
 #!/bin/sh
-df -hl | awk '/^\/dev\/sd[ab]/ { sum+=$5 } END { print sum }'
+FILESYSTEM=`df -k | grep "/$" | awk '{print $1}'`
+df -hl | awk '$FILESYSTEM { sum+=$5 } END { print sum }'
 
